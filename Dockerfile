@@ -1,11 +1,11 @@
 # Base image từ n8n
 FROM n8nio/n8n:latest
 
-# Cài ffmpeg
+# Switch to root để cài gói
 USER root
-RUN apt-get update && \
-    apt-get install -y ffmpeg && \
-    rm -rf /var/lib/apt/lists/*
 
-# Quay lại user n8n
+# Cài ffmpeg trong Alpine
+RUN apk add --no-cache ffmpeg
+
+# Quay lại user node (n8n chạy với user node)
 USER node
